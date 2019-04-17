@@ -17,4 +17,11 @@
  *
  */
 
-extern void about_menu(GtkWidget *parent);
+#ifndef _ABOUT_MENU_H
+#define _ABOUT_MENU_H
+
+#include <gtk/gtk.h>
+
+void about_menu(GtkWidget *parent);
+
+#endif

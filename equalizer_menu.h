@@ -17,4 +17,9 @@
  *
  */
 
+#ifndef _EQUALIZER_MENU_H
+#define _EQUALIZER_MENU_H
+
 void equalizer_menu(GtkWidget *parent);
+
+#endif

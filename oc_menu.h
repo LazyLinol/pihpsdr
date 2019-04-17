@@ -17,4 +17,11 @@
  *
  */
 
-extern void oc_menu(GtkWidget *parent);
+#ifndef _OC_MENU_H
+#define _OC_MENU_H
+
+#include <gtk/gtk.h>
+
+void oc_menu(GtkWidget *parent);
+
+#endif

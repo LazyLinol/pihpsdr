@@ -20,6 +20,8 @@
 #ifndef _FREEDV_WATERFALL_H
 #define _FREEDV_WATERFALL_H
 
+#include <gtk/gtk.h>
+
 #define AUDIO_WATERFALL_SAMPLES 256
 
 extern float *audio_samples;

@@ -17,6 +17,13 @@
  *
  */
 
-extern void update_vox(TRANSMITTER *tx);
-extern void vox_cancel();
-extern double vox_get_peak();
+#ifndef _VOX_H
+#define _VOX_H
+
+#include "transmitter.h"
+
+void update_vox(TRANSMITTER *tx);
+void vox_cancel();
+double vox_get_peak();
+
+#endif

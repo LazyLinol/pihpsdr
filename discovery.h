@@ -17,4 +17,9 @@
  *
  */
 
-extern void discovery();
+#ifndef _DISCOVERY_H
+#define _DISCOVERY_H
+
+void discovery();
+
+#endif

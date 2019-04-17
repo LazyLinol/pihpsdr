@@ -20,8 +20,9 @@
 #ifndef _BAND_H
 #define _BAND_H
 
-#include "bandstack.h"
 #include <gtk/gtk.h>
+
+#include "bandstack.h"
 
 #define band160 0
 #define band80 1

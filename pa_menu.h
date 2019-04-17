@@ -17,9 +17,11 @@
  *
  */
 
-#include <gtk/gtk.h>
-#include <semaphore.h>
-#include <stdio.h>
-#include <string.h>
+#ifndef _PA_MENU_H
+#define _PA_MENU_H
 
-extern void pa_menu(GtkWidget *parent);
+#include <gtk/gtk.h>
+
+void pa_menu(GtkWidget *parent);
+
+#endif

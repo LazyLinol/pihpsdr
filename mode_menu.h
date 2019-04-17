@@ -17,4 +17,11 @@
  *
  */
 
-extern void mode_menu(GtkWidget *parent);
+#ifndef _MODE_MENU_H
+#define _MODE_MENU_H
+
+#include <gtk/gtk.h>
+
+void mode_menu(GtkWidget *parent);
+
+#endif

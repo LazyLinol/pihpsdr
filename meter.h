@@ -22,6 +22,8 @@
 
 #include <gtk/gtk.h>
 
+#include "receiver.h"
+
 #define SMETER 0
 #define POWER 1
 #ifdef PSK

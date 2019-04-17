@@ -17,5 +17,12 @@
  *
  */
 
-extern void band_menu(GtkWidget *parent);
-extern gboolean band_select_cb(GtkWidget *widget, gpointer data);
+#ifndef _BAND_MENU_H
+#define _BAND_MENU_H
+
+#include <gtk/gtk.h>
+
+void band_menu(GtkWidget *parent);
+gboolean band_select_cb(GtkWidget *widget, gpointer data);
+
+#endif

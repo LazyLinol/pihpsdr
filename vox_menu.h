@@ -17,5 +17,13 @@
  *
  */
 
+#ifndef _VOX_MENU_H
+#define _VOX_MENU_H
+
+#include <gtk/gtk.h>
+#include <gdk/gdk.h>
+
 void vox_menu(GtkWidget *parent);
 gboolean vox_cb(GtkWidget *widget, GdkEventButton *event, gpointer data);
+
+#endif

@@ -17,4 +17,11 @@
  *
  */
 
-extern void radio_menu(GtkWidget *parent);
+#ifndef _RADIO_MENU_H
+#define _RADIO_MENU_H
+
+#include <gtk/gtk.h>
+
+void radio_menu(GtkWidget *parent);
+
+#endif

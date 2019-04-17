@@ -17,4 +17,11 @@
  *
  */
 
+#ifndef _XVTR_MENU_H
+#define _XVTR_MENU_H
+
+#include <gtk/gtk.h>
+
 void xvtr_menu(GtkWidget *parent);
+
+#endif

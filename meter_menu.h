@@ -17,4 +17,11 @@
  *
  */
 
+#ifndef _METER_MENU_H
+#define _METER_MENU_H
+
+#include <gtk/gtk.h>
+
 void meter_menu(GtkWidget *parent);
+
+#endif

@@ -17,4 +17,11 @@
  *
  */
 
+#ifndef _ANT_MENU_H
+#define _ANT_MENU_H
+
+#include <gtk/gtk.h>
+
 void ant_menu(GtkWidget *parent);
+
+#endif

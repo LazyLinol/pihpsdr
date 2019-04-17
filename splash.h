@@ -20,6 +20,8 @@
 #ifndef _SPLASH_H
 #define _SPLASH_H
 
+#include <gtk/gtk.h>
+
 void splash_close(void);
 GtkWidget *splash_create(char *image_name, int width, int height);
 void splash_status(char *text);

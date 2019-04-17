@@ -15,5 +15,12 @@
  *
  */
 
-extern void tx_menu(GtkWidget *parent);
-extern void set_tune(double value);
+#ifndef _TX_MENU_H
+#define _TX_MENU_H
+
+#include <gtk/gtk.h>
+
+void tx_menu(GtkWidget *parent);
+void set_tune(double value);
+
+#endif

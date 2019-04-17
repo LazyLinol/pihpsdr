@@ -17,4 +17,11 @@
  *
  */
 
-extern void vfo_menu(GtkWidget *parent);
+#ifndef _VFO_MENU_H
+#define _VFO_MENU_H
+
+#include <gtk/gtk.h>
+
+void vfo_menu(GtkWidget *parent);
+
+#endif

@@ -15,6 +15,12 @@
  *
  */
 
-extern void ps_menu(GtkWidget *parent);
+#ifndef _PS_MENU_H
+#define _PS_MENU_H
 
-extern void ps_twotone(int state);
+#include <gtk/gtk.h>
+
+void ps_menu(GtkWidget *parent);
+void ps_twotone(int state);
+
+#endif

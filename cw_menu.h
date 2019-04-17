@@ -17,4 +17,11 @@
  *
  */
 
-extern void cw_menu(GtkWidget *parent);
+#ifndef _CW_MENU_H
+#define _CW_MENU_H
+
+#include <gtk/gtk.h>
+
+void cw_menu(GtkWidget *parent);
+
+#endif

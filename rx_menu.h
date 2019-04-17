@@ -17,4 +17,11 @@
  *
  */
 
-extern void rx_menu(GtkWidget *parent);
+#ifndef _RX_MENU_H
+#define _RX_MENU_H
+
+#include <gtk/gtk.h>
+
+void rx_menu(GtkWidget *parent);
+
+#endif

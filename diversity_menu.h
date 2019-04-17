@@ -17,4 +17,9 @@
  *
  */
 
-extern void diversity_menu(GtkWidget *parent);
+#ifndef _DIVERSITY_MENU_H
+#define _DIVERSITY_MENU_H
+
+void diversity_menu(GtkWidget *parent);
+
+#endif

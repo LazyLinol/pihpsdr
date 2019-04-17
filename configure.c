@@ -17,9 +17,6 @@
  *
  */
 
-#include "channel.h"
-#include "discovered.h"
-#include "main.h"
 #include <arpa/inet.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
@@ -30,8 +27,12 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
 //#include "radio.h"
+#include "channel.h"
+#include "discovered.h"
 #include "gpio.h"
+#include "main.h"
 
 #ifdef GPIO
 

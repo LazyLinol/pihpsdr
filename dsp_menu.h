@@ -17,4 +17,9 @@
  *
  */
 
+#ifndef _DSP_MENU_H
+#define _DSP_MENU_H
+
 void dsp_menu(GtkWidget *parent);
+
+#endif

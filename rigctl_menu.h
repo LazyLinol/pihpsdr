@@ -17,15 +17,17 @@
  *
  */
 
+#ifndef _RIGCTL_MENU_H
+#define _RIGCTL_MENU_H
+
 #include <gtk/gtk.h>
-#include <semaphore.h>
-#include <stdio.h>
-#include <string.h>
 
-extern void rigctl_menu(GtkWidget *parent);
+void rigctl_menu(GtkWidget *parent);
+void disable_rigctl();
+void disable_serial();
+
 extern char ser_port[];
-extern void disable_rigctl();
-extern void disable_serial();
-
 extern int serial_baud_rate;
 extern int serial_parity;
+
+#endif

@@ -17,4 +17,11 @@
  *
  */
 
+#ifndef _TEST_MENU_H
+#define _TEST_MENU_H
+
+#include <gtk/gtk.h>
+
 void test_menu(GtkWidget *parent);
+
+#endif

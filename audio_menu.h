@@ -17,4 +17,9 @@
  *
  */
 
-extern void audio_menu(GtkWidget *parent);
+#ifndef _AUDIO_MENU_H
+#define _AUDIO_MENU_H
+
+void audio_menu(GtkWidget *parent);
+
+#endif

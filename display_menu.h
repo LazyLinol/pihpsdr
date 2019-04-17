@@ -17,4 +17,9 @@
  *
  */
 
-extern void display_menu(GtkWidget *parent);
+#ifndef _DISPLAY_MENU_H
+#define _DISPLAY_MENU_H
+
+void display_menu(GtkWidget *parent);
+
+#endif

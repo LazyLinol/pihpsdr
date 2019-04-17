@@ -17,4 +17,11 @@
  *
  */
 
-extern void bandstack_menu(GtkWidget *parent);
+#ifndef _BANDSTACK_MENU_H
+#define _BANDSTACK_MENU_H
+
+#include <gtk/gtk.h>
+
+void bandstack_menu(GtkWidget *parent);
+
+#endif

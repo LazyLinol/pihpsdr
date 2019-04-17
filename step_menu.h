@@ -17,4 +17,11 @@
  *
  */
 
-extern void step_menu(GtkWidget *parent);
+#ifndef _STEP_MENU_H
+#define _STEP_MENU_H
+
+#include <gtk/gtk.h>
+
+void step_menu(GtkWidget *parent);
+
+#endif
