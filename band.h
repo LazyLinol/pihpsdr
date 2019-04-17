@@ -1,27 +1,27 @@
 /* Copyright (C)
-* 2015 - John Melton, G0ORX/N6LYT
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-*/
+ * 2015 - John Melton, G0ORX/N6LYT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 
 #ifndef _BAND_H
 #define _BAND_H
 
-#include <gtk/gtk.h>
 #include "bandstack.h"
+#include <gtk/gtk.h>
 
 #define band160 0
 #define band80 1
@@ -60,35 +60,33 @@
 
 /* --------------------------------------------------------------------------*/
 /**
-* @brief Band definition
-*/
+ * @brief Band definition
+ */
 struct _BAND {
-    char title[16];
-    BANDSTACK *bandstack;
-    unsigned char OCrx;
-    unsigned char OCtx;
-    int preamp;
-    int alexRxAntenna;
-    int alexTxAntenna;
-    int alexAttenuation;
-    double pa_calibration;
-    long long frequencyMin;
-    long long frequencyMax;
-    long long frequencyLO;
-    long long errorLO;
-    int disablePA;
+  char title[16];
+  BANDSTACK *bandstack;
+  unsigned char OCrx;
+  unsigned char OCtx;
+  int preamp;
+  int alexRxAntenna;
+  int alexTxAntenna;
+  int alexAttenuation;
+  double pa_calibration;
+  long long frequencyMin;
+  long long frequencyMax;
+  long long frequencyLO;
+  long long errorLO;
+  int disablePA;
 };
 
 typedef struct _BAND BAND;
 
 struct _CHANNEL {
-    long long frequency;
-    long long width;
+  long long frequency;
+  long long width;
 };
 
 typedef struct _CHANNEL CHANNEL;
-
-
 
 int band;
 gboolean displayHF;
@@ -116,7 +114,7 @@ extern BAND *band_set_current(int b);
 extern int get_band_from_frequency(long long f);
 
 extern BANDSTACK *bandstack_get_bandstack(int band);
-extern BANDSTACK_ENTRY *bandstack_get_bandstack_entry(int band,int entry);
+extern BANDSTACK_ENTRY *bandstack_get_bandstack_entry(int band, int entry);
 
 extern BANDSTACK_ENTRY *bandstack_entry_next();
 extern BANDSTACK_ENTRY *bandstack_entry_previous();

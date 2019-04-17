@@ -1,21 +1,21 @@
 /* Copyright (C)
-* 2017 - John Melton, G0ORX/N6LYT
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-*/
+ * 2017 - John Melton, G0ORX/N6LYT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 
 #ifndef _TRANSMITTER_H
 #define _TRANSMITTER_H
@@ -48,12 +48,12 @@ typedef struct _transmitter {
   int filter_low;
   int filter_high;
 
-/*
-  long long frequency;
-  long long display_frequency;
-  long long dds_frequency;
-  long long dds_offset;
-*/
+  /*
+    long long frequency;
+    long long display_frequency;
+    long long dds_frequency;
+    long long dds_offset;
+  */
   int alex_antenna;
 
   int width;
@@ -97,7 +97,7 @@ typedef struct _transmitter {
   int tune_percent;
 
   int drive_level;
- 
+
 #ifdef FREEDV
   char freedv_text_data[64];
   int freedv_text_index;
@@ -119,33 +119,30 @@ typedef struct _transmitter {
 
 extern TRANSMITTER *create_transmitter(int id, int buffer_size, int fft_size, int fps, int width, int height);
 
-void reconfigure_transmitter(TRANSMITTER *tx,int height);
+void reconfigure_transmitter(TRANSMITTER *tx, int height);
 
-
-extern void tx_set_mode(TRANSMITTER* tx,int m);
-extern void tx_set_filter(TRANSMITTER *tx,int low,int high);
+extern void tx_set_mode(TRANSMITTER *tx, int m);
+extern void tx_set_filter(TRANSMITTER *tx, int low, int high);
 extern void transmitter_set_deviation(TRANSMITTER *tx);
 extern void transmitter_set_am_carrier_level(TRANSMITTER *tx);
-extern void tx_set_pre_emphasize(TRANSMITTER *tx,int state);
-extern void transmitter_set_ctcss(TRANSMITTER *tx,int run,double frequency);
+extern void tx_set_pre_emphasize(TRANSMITTER *tx, int state);
+extern void transmitter_set_ctcss(TRANSMITTER *tx, int run, double frequency);
 
-extern void add_mic_sample(TRANSMITTER *tx,short mic_sample);
-extern void add_freedv_mic_sample(TRANSMITTER *tx,short mic_sample);
+extern void add_mic_sample(TRANSMITTER *tx, short mic_sample);
+extern void add_freedv_mic_sample(TRANSMITTER *tx, short mic_sample);
 
 extern void transmitter_save_state(TRANSMITTER *tx);
 extern void transmitter_set_out_of_band(TRANSMITTER *tx);
-extern void tx_set_displaying(TRANSMITTER *tx,int state);
+extern void tx_set_displaying(TRANSMITTER *tx, int state);
 
-extern void tx_set_ps(TRANSMITTER *tx,int state);
-extern void tx_set_twotone(TRANSMITTER *tx,int state);
+extern void tx_set_ps(TRANSMITTER *tx, int state);
+extern void tx_set_twotone(TRANSMITTER *tx, int state);
 
-extern void transmitter_set_compressor_level(TRANSMITTER *tx,double level);
-extern void transmitter_set_compressor(TRANSMITTER *tx,int state);
+extern void transmitter_set_compressor_level(TRANSMITTER *tx, double level);
+extern void transmitter_set_compressor(TRANSMITTER *tx, int state);
 
-extern void tx_set_ps_sample_rate(TRANSMITTER *tx,int rate);
-extern void add_ps_iq_samples(TRANSMITTER *tx, double i_sample_0,double q_sample_0, double i_sample_1, double q_sample_1);
+extern void tx_set_ps_sample_rate(TRANSMITTER *tx, int rate);
+extern void add_ps_iq_samples(TRANSMITTER *tx, double i_sample_0, double q_sample_0, double i_sample_1, double q_sample_1);
 
 extern void cw_hold_key(int state);
 #endif
-
-

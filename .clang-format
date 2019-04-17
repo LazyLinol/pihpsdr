@@ -4,5 +4,5 @@ ColumnLimit: 1000
 CommentPragmas:  '^[^ ]'
 IndentCaseLabels: true
 IndentWidth: 2
-ReflowComments: false
+# ReflowComments: false
 UseTab: Never

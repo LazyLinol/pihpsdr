@@ -1,1 +1,1 @@
-extern void error_handler(char *text,char *err);
+extern void error_handler(char *text, char *err);

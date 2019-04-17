@@ -1,27 +1,27 @@
 /* Copyright (C)
-* 2015 - John Melton, G0ORX/N6LYT
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-*/
+ * 2015 - John Melton, G0ORX/N6LYT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 
 #ifndef _NEW_PROTOCOL_H
 #define _NEW_PROTOCOL_H
 
-#include <semaphore.h>
 #include "receiver.h"
+#include <semaphore.h>
 
 // port definitions from host
 #define GENERAL_REGISTERS_FROM_HOST_PORT 1024
@@ -45,7 +45,6 @@
 #define RX_IQ_TO_HOST_PORT_5 1040
 #define RX_IQ_TO_HOST_PORT_6 1041
 #define RX_IQ_TO_HOST_PORT_7 1042
-
 
 #define MIC_SAMPLES 64
 
@@ -87,7 +86,7 @@ extern int getMox();
 extern void setTune(int state);
 extern int getTune();
 
-extern void new_protocol_process_local_mic(unsigned char *buffer,int le);
-extern void new_protocol_audio_samples(RECEIVER *rx,short left_audio_sample,short right_audio_sample);
-extern void new_protocol_iq_samples(int isample,int qsample);
+extern void new_protocol_process_local_mic(unsigned char *buffer, int le);
+extern void new_protocol_audio_samples(RECEIVER *rx, short left_audio_sample, short right_audio_sample);
+extern void new_protocol_iq_samples(int isample, int qsample);
 #endif

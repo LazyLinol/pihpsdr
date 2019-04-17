@@ -1,21 +1,21 @@
 /* Copyright (C)
-* 2015 - John Melton, G0ORX/N6LYT
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-*/
+ * 2015 - John Melton, G0ORX/N6LYT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 
 #ifndef _RADIO_H
 #define _RADIO_H
@@ -56,7 +56,7 @@ extern char property_path[];
 
 #define REGION_OTHER 0
 #define REGION_UK 1
-#define REGION_WRC15 2  // 60m band allocation for countries implementing WRC15
+#define REGION_WRC15 2 // 60m band allocation for countries implementing WRC15
 
 extern int region;
 
@@ -65,7 +65,7 @@ extern int region;
 #define RECEIVERS 2
 #ifdef PURESIGNAL
 #define PS_TX_FEEDBACK (RECEIVERS)
-#define PS_RX_FEEDBACK (RECEIVERS+1)
+#define PS_RX_FEEDBACK (RECEIVERS + 1)
 #endif
 
 extern RECEIVER *receiver[];
@@ -118,7 +118,6 @@ extern int display_filled;
 extern int display_detector_mode;
 extern int display_average_mode;
 extern double display_average_time;
-
 
 //extern int display_waterfall;
 

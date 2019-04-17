@@ -1,44 +1,42 @@
 /* Copyright (C)
-* 2017 - John Melton, G0ORX/N6LYT
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-*/
+ * 2017 - John Melton, G0ORX/N6LYT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 
-#include <stdint.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <gtk/gtk.h>
+#include "band_menu.h"
 #include "discovery.h"
+#include "new_menu.h"
+#include "radio.h"
 #include "receiver.h"
 #include "sliders.h"
 #include "toolbar.h"
-#include "band_menu.h"
 #include "vfo.h"
-#include "radio.h"
-#include "new_menu.h"
+#include <gtk/gtk.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #ifdef PURESIGNAL
 #include "ps_menu.h"
 #endif
 
 // The following calls functions can be called usig g_idle_add
 
-int ext_vfo_mode_changed(void * data)
-{
-  int mode=(uintptr_t) data;
+int ext_vfo_mode_changed(void *data) {
+  int mode = (uintptr_t)data;
   vfo_mode_changed(mode);
   return 0;
 }
@@ -65,10 +63,10 @@ int ext_vfo_filter_changed(void *data) {
 }
 
 int ext_band_update(void *data) {
-  if(data==NULL) {
+  if (data == NULL) {
     start_band();
   } else {
-    band_select_cb(NULL,data);
+    band_select_cb(NULL, data);
   }
   return 0;
 }
@@ -149,14 +147,14 @@ int ext_sliders_update(void *data) {
 
 #ifdef PURESIGNAL
 int ext_tx_set_ps(void *data) {
-  int state=(uintptr_t) data;
+  int state = (uintptr_t)data;
   tx_set_ps(transmitter, state);
   return 0;
 }
 #endif
 
 int ext_vfo_step(void *data) {
-  int step=(int)(long)data;
+  int step = (int)(long)data;
   vfo_step(step);
   return 0;
 }
