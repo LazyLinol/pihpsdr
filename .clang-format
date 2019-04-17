@@ -1,0 +1,8 @@
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: false
+ColumnLimit: 1000
+CommentPragmas:  '^[^ ]'
+IndentCaseLabels: true
+IndentWidth: 2
+ReflowComments: false
+UseTab: Never
