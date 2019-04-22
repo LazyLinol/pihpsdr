@@ -10,7 +10,7 @@ GIT_VERSION := $(shell git describe --abbrev=0 --tags)
 #I2C_INCLUDE=I2C
 
 # uncomment the line below to include USB Ozy support
-# USBOZY_INCLUDE=USBOZY
+#USBOZY_INCLUDE=USBOZY
 
 # uncomment the line below to include support for psk31
 #PSK_INCLUDE=PSK
@@ -19,7 +19,7 @@ GIT_VERSION := $(shell git describe --abbrev=0 --tags)
 #FREEDV_INCLUDE=FREEDV
 
 # uncomment the line below to include Pure Signal support
-PURESIGNAL_INCLUDE=PURESIGNAL
+#PURESIGNAL_INCLUDE=PURESIGNAL
 
 # uncomment the line to below include support for sx1509 i2c expander
 #SX1509_INCLUDE=sx1509
@@ -28,10 +28,10 @@ PURESIGNAL_INCLUDE=PURESIGNAL
 #LOCALCW_INCLUDE=LOCALCW
 
 # uncomment the line below to include support for STEMlab discovery (WITHOUT AVAHI)
-STEMLAB_DISCOVERY=STEMLAB_DISCOVERY_NOAVAHI
+#STEMLAB_DISCOVERY=STEMLAB_DISCOVERY_NOAVAHI
 
 # uncommment this line for circumventing problems with RedPitya HPSDR apps.
-STEMLAB_FIX_OPTION=-DSTEMLAB_FIX
+#STEMLAB_FIX_OPTION=-DSTEMLAB_FIX
 
 # uncomment the line below to include support for Pi SDR
 #PI_SDR_INCLUDE=PI_SDR
@@ -50,37 +50,37 @@ CC=gcc
 LINK=gcc
 
 ifeq ($(PURESIGNAL_INCLUDE),PURESIGNAL)
-PURESIGNAL_OPTIONS=-D PURESIGNAL
-PURESIGNAL_SOURCES= \
-ps_menu.c
-PURESIGNAL_HEADERS= \
-ps_menu.h
-PURESIGNAL_OBJS= \
-ps_menu.o
+    PURESIGNAL_OPTIONS=-D PURESIGNAL
+    PURESIGNAL_SOURCES= \
+    ps_menu.c
+    PURESIGNAL_HEADERS= \
+    ps_menu.h
+    PURESIGNAL_OBJS= \
+    ps_menu.o
 endif
 
 ifeq ($(REMOTE_INCLUDE),REMOTE)
-REMOTE_OPTIONS=-D REMOTE
-REMOTE_SOURCES= \
-remote_radio.c \
-remote_receiver.c
-REMOTE_HEADERS= \
-remote_radio.h \
-remote_receiver.h
-REMOTE_OBJS= \
-remote_radio.o \
-remote_receiver.o
+    REMOTE_OPTIONS=-D REMOTE
+    REMOTE_SOURCES= \
+    remote_radio.c \
+    remote_receiver.c
+    REMOTE_HEADERS= \
+    remote_radio.h \
+    remote_receiver.h
+    REMOTE_OBJS= \
+    remote_radio.o \
+    remote_receiver.o
 endif
 
 ifeq ($(USBOZY_INCLUDE),USBOZY)
-USBOZY_OPTIONS=-D USBOZY
-USBOZY_LIBS=-lusb-1.0
-USBOZY_SOURCES= \
-ozyio.c
-USBOZY_HEADERS= \
-ozyio.h
-USBOZY_OBJS= \
-ozyio.o
+    USBOZY_OPTIONS=-D USBOZY
+    USBOZY_LIBS=-lusb-1.0
+    USBOZY_SOURCES= \
+    ozyio.c
+    USBOZY_HEADERS= \
+    ozyio.h
+    USBOZY_OBJS= \
+    ozyio.o
 endif
 
 # uncomment the line below for LimeSDR (uncomment line below)
@@ -94,87 +94,85 @@ RADIOBERRY_OPTIONS=-D RADIOBERRY
 endif
 
 ifeq ($(LIMESDR_INCLUDE),LIMESDR)
-LIMESDR_OPTIONS=-D LIMESDR
-SOAPYSDRLIBS=-lSoapySDR
-LIMESDR_SOURCES= \
-lime_discovery.c \
-lime_protocol.c
-LIMESDR_HEADERS= \
-lime_discovery.h \
-lime_protocol.h
-LIMESDR_OBJS= \
-lime_discovery.o \
-lime_protocol.o
+    LIMESDR_OPTIONS=-D LIMESDR
+    SOAPYSDRLIBS=-lSoapySDR
+    LIMESDR_SOURCES= \
+    lime_discovery.c \
+    lime_protocol.c
+    LIMESDR_HEADERS= \
+    lime_discovery.h \
+    lime_protocol.h
+    LIMESDR_OBJS= \
+    lime_discovery.o \
+    lime_protocol.o
 endif
-
 
 ifeq ($(PSK_INCLUDE),PSK)
-PSK_OPTIONS=-D PSK
-PSKLIBS=-lpsk
-PSK_SOURCES= \
-psk.c \
-psk_waterfall.c
-PSK_HEADERS= \
-psk.h \
-psk_waterfall.h
-PSK_OBJS= \
-psk.o \
-psk_waterfall.o
+    PSK_OPTIONS=-D PSK
+    PSKLIBS=-lpsk
+    PSK_SOURCES= \
+    psk.c \
+    psk_waterfall.c
+    PSK_HEADERS= \
+    psk.h \
+    psk_waterfall.h
+    PSK_OBJS= \
+    psk.o \
+    psk_waterfall.o
 endif
 
-
 ifeq ($(FREEDV_INCLUDE),FREEDV)
-FREEDV_OPTIONS=-D FREEDV
-FREEDVLIBS=-lcodec2
-FREEDV_SOURCES= \
-freedv.c \
-freedv_menu.c
-FREEDV_HEADERS= \
-freedv.h \
-freedv_menu.h
-FREEDV_OBJS= \
-freedv.o \
-freedv_menu.o
+    FREEDV_OPTIONS=-D FREEDV
+    FREEDVLIBS=-lcodec2
+    FREEDV_SOURCES= \
+    freedv.c \
+    freedv_menu.c
+    FREEDV_HEADERS= \
+    freedv.h \
+    freedv_menu.h
+    FREEDV_OBJS= \
+    freedv.o \
+    freedv_menu.o
 endif
 
 ifeq ($(LOCALCW_INCLUDE),LOCALCW)
-LOCALCW_OPTIONS=-D LOCALCW
-LOCALCW_SOURCES= iambic.c
-LOCALCW_HEADERS= iambic.h
-LOCALCW_OBJS=    iambic.o
+    LOCALCW_OPTIONS=-D LOCALCW
+    LOCALCW_SOURCES= iambic.c
+    LOCALCW_HEADERS= iambic.h
+    LOCALCW_OBJS=    iambic.o
 endif
 
 ifeq ($(GPIO_INCLUDE),GPIO)
-  GPIO_OPTIONS=-D GPIO
-  GPIO_LIBS=-lwiringPi -lpigpio 
-  GPIO_SOURCES= \
-  gpio.c \
-  encoder_menu.c
-  GPIO_HEADERS= \
-  gpio.h \
-  encoder_menu.h
-  GPIO_OBJS= \
-  gpio.o \
-  encoder_menu.o
+    GPIO_OPTIONS=-D GPIO
+    GPIO_LIBS=-lwiringPi -lpigpio 
+    GPIO_SOURCES= \
+    gpio.c \
+    encoder_menu.c
+    GPIO_HEADERS= \
+    gpio.h \
+    encoder_menu.h
+    GPIO_OBJS= \
+    gpio.o \
+    encoder_menu.o
 endif
 
 ifeq ($(I2C_INCLUDE),I2C)
-  I2C_OPTIONS=-D I2C
-  I2C_SOURCES=i2c.c
-  I2C_HEADERS=i2c.h
-  I2C_OBJS=i2c.o
+    I2C_OPTIONS=-D I2C
+    I2C_SOURCES=i2c.c
+    I2C_HEADERS=i2c.h
+    I2C_OBJS=i2c.o
 endif
 
 ifeq ($(STEMLAB_DISCOVERY), STEMLAB_DISCOVERY_NOAVAHI)
-STEMLAB_OPTIONS=-D STEMLAB_DISCOVERY -D NO_AVAHI `pkg-config --cflags libcurl`
-STEMLAB_LIBS=`pkg-config --libs libcurl`
-STEMLAB_SOURCES=stemlab_discovery.c
-STEMLAB_HEADERS=stemlab_discovery.h
-STEMLAB_OBJS=stemlab_discovery.o
+    STEMLAB_OPTIONS=-D STEMLAB_DISCOVERY -D NO_AVAHI `pkg-config --cflags libcurl`
+    STEMLAB_LIBS=`pkg-config --libs libcurl`
+    STEMLAB_SOURCES=stemlab_discovery.c
+    STEMLAB_HEADERS=stemlab_discovery.h
+    STEMLAB_OBJS=stemlab_discovery.o
 endif
 
 ifeq ($(PI_SDR_INCLUDE),PI_SDR)
-PI_SDR_OPTIONS=-D PI_SDR
+    PI_SDR_OPTIONS=-D PI_SDR
 endif
 
 GTKINCLUDES=`pkg-config --cflags gtk+-3.0`
@@ -188,8 +186,8 @@ PORTAUDIO_OPTIONS=-DPORTAUDIO
 AUDIO_LIBS=-lportaudio
 
 OPTIONS=-g -Wno-deprecated-declarations $(PURESIGNAL_OPTIONS) $(REMOTE_OPTIONS) $(USBOZY_OPTIONS) $(I2C_OPTIONS) $(GPIO_OPTIONS) $(LIMESDR_OPTIONS) \
-                $(FREEDV_OPTIONS) $(LOCALCW_OPTIONS) $(RADIOBERRY_OPTIONS) $(PI_SDR_OPTIONS) $(PSK_OPTIONS) $(STEMLAB_OPTIONS) $(STEMLAB_FIX_OPTION) \
-                -D GIT_DATE='"$(GIT_DATE)"' -D GIT_VERSION='"$(GIT_VERSION)"' $(PORTAUDIO_OPTIONS) $(DEBUG_OPTION) -O3
+    $(FREEDV_OPTIONS) $(LOCALCW_OPTIONS) $(RADIOBERRY_OPTIONS) $(PI_SDR_OPTIONS) $(PSK_OPTIONS) $(STEMLAB_OPTIONS) $(STEMLAB_FIX_OPTION) \
+    -D GIT_DATE='"$(GIT_DATE)"' -D GIT_VERSION='"$(GIT_VERSION)"' $(PORTAUDIO_OPTIONS) $(DEBUG_OPTION) -O3
 
 LIBS=-lm -lwdsp -lpthread $(AUDIO_LIBS) $(USBOZY_LIBS) $(PSKLIBS) $(GTKLIBS) $(GPIO_LIBS) $(SOAPYSDRLIBS) $(FREEDVLIBS) $(STEMLAB_LIBS)
 INCLUDES=$(GTKINCLUDES)
@@ -202,216 +200,217 @@ COMPILE=$(CC) $(OPTIONS) $(INCLUDES)
 PROGRAM=pihpsdr
 
 SOURCES= \
-audio.c \
+about_menu.c \
+agc_menu.c \
+ant_menu.c \
 audio_waterfall.c \
+audio.c \
+band_menu.c \
 band.c \
+bandstack_menu.c \
+button_text.c \
 configure.c \
-frequency.c \
+cw_menu.c \
+cwramp.c \
 discovered.c \
 discovery.c \
-filter.c \
-main.c \
-new_menu.c \
-about_menu.c \
-exit_menu.c \
-radio_menu.c \
-rx_menu.c \
-ant_menu.c \
 display_menu.c \
-dsp_menu.c \
-pa_menu.c \
-cw_menu.c \
-oc_menu.c \
-portaudio.c \
-xvtr_menu.c \
-equalizer_menu.c \
-step_menu.c \
-meter_menu.c \
-band_menu.c \
-bandstack_menu.c \
-mode_menu.c \
-filter_menu.c \
-noise_menu.c \
-agc_menu.c \
-vox_menu.c \
-fft_menu.c \
 diversity_menu.c \
+dsp_menu.c \
+equalizer_menu.c \
+error_handler.c \
+exit_menu.c \
+ext.c \
+fft_menu.c \
+filter_menu.c \
+filter.c \
 freqent_menu.c \
-tx_menu.c \
-vfo_menu.c \
-test_menu.c \
+frequency.c \
+led.c \
+main.c \
+memory.c \
+meter_menu.c \
 meter.c \
+mode_menu.c \
 mode.c \
-old_discovery.c \
 new_discovery.c \
-old_protocol.c \
-new_protocol.c \
+new_menu.c \
 new_protocol_programmer.c \
-rx_panadapter.c \
-tx_panadapter.c \
+new_protocol.c \
+noise_menu.c \
+oc_menu.c \
+old_discovery.c \
+old_protocol.c \
+pa_menu.c \
+portaudio.c \
 property.c \
+radio_menu.c \
 radio.c \
 receiver.c \
-rigctl.c \
 rigctl_menu.c \
+rigctl.c \
+rx_menu.c \
+rx_panadapter.c \
+sliders.c \
+step_menu.c \
+store_menu.c \
+store.c \
+test_menu.c \
 toolbar.c \
 transmitter.c \
-sliders.c \
-version.c \
-vfo.c \
-waterfall.c \
-button_text.c \
-vox.c \
+tx_menu.c \
+tx_panadapter.c \
 update.c \
-store.c \
-store_menu.c \
-memory.c \
-led.c \
-ext.c \
-error_handler.c \
-cwramp.c
+version.c \
+vfo_menu.c \
+vfo.c \
+vox_menu.c \
+vox.c \
+waterfall.c \
+xvtr_menu.c \
 
 
 HEADERS= \
-audio.h \
-audio_waterfall.h \
+about_menu.h \
+agc_menu.h \
 agc.h \
 alex.h \
+ant_menu.h \
+audio_waterfall.h \
+audio.h \
+band_menu.h \
 band.h \
-configure.h \
-frequency.h \
+bandstack_menu.h \
 bandstack.h \
+button_text.h \
 channel.h \
+configure.h \
+cw_menu.h \
 discovered.h \
 discovery.h \
-filter.h \
-new_menu.h \
-about_menu.h \
-rx_menu.h \
-exit_menu.h \
-radio_menu.h \
-ant_menu.h \
 display_menu.h \
-dsp_menu.h \
-pa_menu.h \
-cw_menu.h \
-oc_menu.h \
-xvtr_menu.h \
-equalizer_menu.h \
-step_menu.h \
-meter_menu.h \
-band_menu.h \
-bandstack_menu.h \
-mode_menu.h \
-filter_menu.h \
-noise_menu.h \
-agc_menu.h \
-vox_menu.h \
-fft_menu.h \
 diversity_menu.h \
+dsp_menu.h \
+equalizer_menu.h \
+error_handler.h \
+exit_menu.h \
+ext.h \
+fft_menu.h \
+filter_menu.h \
+filter.h \
 freqent_menu.h \
-tx_menu.h \
-vfo_menu.h \
-test_menu.h \
+frequency.h \
+led.h \
+memory.h \
+meter_menu.h \
 meter.h \
+mode_menu.h \
 mode.h \
-old_discovery.h \
 new_discovery.h \
-old_protocol.h \
+new_menu.h \
 new_protocol.h \
-rx_panadapter.h \
-tx_panadapter.h \
+noise_menu.h \
+oc_menu.h \
+old_discovery.h \
+old_protocol.h \
+pa_menu.h \
 property.h \
+radio_menu.h \
 radio.h \
 receiver.h \
-rigctl.h \
 rigctl_menu.h \
+rigctl.h \
+rx_menu.h \
+rx_panadapter.h \
+sliders.h \
+step_menu.h \
+store_menu.h \
+store.h \
+test_menu.h \
 toolbar.h \
 transmitter.h \
-sliders.h \
-version.h \
-vfo.h \
-waterfall.h \
-button_text.h \
-vox.h \
+tx_menu.h \
+tx_panadapter.h \
 update.h \
-store.h \
-store_menu.h \
-memory.h \
-led.h \
-ext.h \
-error_handler.h
+version.h \
+vfo_menu.h \
+vfo.h \
+vox_menu.h \
+vox.h \
+waterfall.h \
+xvtr_menu.h \
 
 
 OBJS= \
-audio.o \
+about_menu.o \
+agc_menu.o \
+ant_menu.o \
 audio_waterfall.o \
+audio.o \
+band_menu.o \
 band.o \
+bandstack_menu.o \
+button_text.o \
 configure.o \
-frequency.o \
+cw_menu.o \
+cwramp.o \
 discovered.o \
 discovery.o \
-filter.o \
-version.o \
-main.o \
-new_menu.o \
-about_menu.o \
-rx_menu.o \
-exit_menu.o \
-radio_menu.o \
-ant_menu.o \
 display_menu.o \
-dsp_menu.o \
-pa_menu.o \
-cw_menu.o \
-oc_menu.o \
-xvtr_menu.o \
-equalizer_menu.o \
-step_menu.o \
-meter_menu.o \
-band_menu.o \
-bandstack_menu.o \
-mode_menu.o \
-filter_menu.o \
-noise_menu.o \
-agc_menu.o \
-vox_menu.o \
-fft_menu.o \
 diversity_menu.o \
+dsp_menu.o \
+equalizer_menu.o \
+error_handler.o \
+exit_menu.o \
+ext.o \
+fft_menu.o \
+filter_menu.o \
+filter.o \
 freqent_menu.o \
-tx_menu.o \
-vfo_menu.o \
-test_menu.o \
+frequency.o \
+led.o \
+main.o \
+memory.o \
+meter_menu.o \
 meter.o \
+mode_menu.o \
 mode.o \
-old_discovery.o \
 new_discovery.o \
-old_protocol.o \
-new_protocol.o \
+new_menu.o \
 new_protocol_programmer.o \
-rx_panadapter.o \
-tx_panadapter.o \
+new_protocol.o \
+noise_menu.o \
+oc_menu.o \
+old_discovery.o \
+old_protocol.o \
+pa_menu.o \
+portaudio.o \
 property.o \
+radio_menu.o \
 radio.o \
 receiver.o \
-rigctl.o \
 rigctl_menu.o \
+rigctl.o \
+rx_menu.o \
+rx_panadapter.o \
+sliders.o \
+step_menu.o \
+store_menu.o \
+store.o \
+test_menu.o \
 toolbar.o \
 transmitter.o \
-sliders.o \
-vfo.o \
-waterfall.o \
-button_text.o \
-vox.o \
+tx_menu.o \
+tx_panadapter.o \
 update.o \
-store.o \
-store_menu.o \
-memory.o \
-led.o \
-ext.o \
-error_handler.o \
-cwramp.o \
-portaudio.o
+version.o \
+vfo_menu.o \
+vfo.o \
+vox_menu.o \
+vox.o \
+waterfall.o \
+xvtr_menu.o \
+
 
 $(PROGRAM):  $(OBJS) $(REMOTE_OBJS) $(USBOZY_OBJS) $(LIMESDR_OBJS) $(FREEDV_OBJS) $(LOCALCW_OBJS) $(I2C_OBJS) $(GPIO_OBJS) $(PSK_OBJS) $(PURESIGNAL_OBJS) $(STEMLAB_OBJS)
 	$(LINK) -o $(PROGRAM) $(OBJS) $(REMOTE_OBJS) $(USBOZY_OBJS) $(I2C_OBJS) $(GPIO_OBJS) $(LIMESDR_OBJS) $(FREEDV_OBJS) $(LOCALCW_OBJS) $(PSK_OBJS) $(PURESIGNAL_OBJS) $(STEMLAB_OBJS) $(LIBS)
@@ -488,4 +487,3 @@ localapp:	app
 	cp *.props    pihpsdr.app/Contents/Resources
 
 #############################################################################
-
