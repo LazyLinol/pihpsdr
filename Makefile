@@ -50,10 +50,10 @@ CC=gcc
 LINK=gcc
 
 # uncomment the line below for various debug facilities
-#DEBUG_OPTION=-D DEBUG
+#DEBUG_OPTION=-DDEBUG
 
 ifeq ($(PURESIGNAL_INCLUDE),PURESIGNAL)
-    PURESIGNAL_OPTIONS=-D PURESIGNAL
+    PURESIGNAL_OPTIONS=-DPURESIGNAL
     PURESIGNAL_SOURCES= \
     ps_menu.c
     PURESIGNAL_HEADERS= \
@@ -63,7 +63,7 @@ ifeq ($(PURESIGNAL_INCLUDE),PURESIGNAL)
 endif
 
 ifeq ($(REMOTE_INCLUDE),REMOTE)
-    REMOTE_OPTIONS=-D REMOTE
+    REMOTE_OPTIONS=-DREMOTE
     REMOTE_SOURCES= \
     remote_radio.c \
     remote_receiver.c
@@ -76,7 +76,7 @@ ifeq ($(REMOTE_INCLUDE),REMOTE)
 endif
 
 ifeq ($(USBOZY_INCLUDE),USBOZY)
-    USBOZY_OPTIONS=-D USBOZY
+    USBOZY_OPTIONS=-DUSBOZY
     USBOZY_LIBS=-lusb-1.0
     USBOZY_SOURCES= \
     ozyio.c
@@ -92,11 +92,11 @@ endif
 # uncomment the line below when Radioberry radio cape is plugged in (for now use emulator and old protocol)
 #RADIOBERRY_INCLUDE=RADIOBERRY
 ifeq ($(RADIOBERRY_INCLUDE),RADIOBERRY)
-    RADIOBERRY_OPTIONS=-D RADIOBERRY
+    RADIOBERRY_OPTIONS=-DRADIOBERRY
 endif
 
 ifeq ($(LIMESDR_INCLUDE),LIMESDR)
-    LIMESDR_OPTIONS=-D LIMESDR
+    LIMESDR_OPTIONS=-DLIMESDR
     SOAPYSDRLIBS=-lSoapySDR
     LIMESDR_SOURCES= \
     lime_discovery.c \
@@ -111,7 +111,7 @@ endif
 
 
 ifeq ($(PSK_INCLUDE),PSK)
-    PSK_OPTIONS=-D PSK
+    PSK_OPTIONS=-DPSK
     PSKLIBS=-lpsk
     PSK_SOURCES= \
     psk.c \
@@ -126,7 +126,7 @@ endif
 
 
 ifeq ($(FREEDV_INCLUDE),FREEDV)
-    FREEDV_OPTIONS=-D FREEDV
+    FREEDV_OPTIONS=-DFREEDV
     FREEDVLIBS=-lcodec2
     FREEDV_SOURCES= \
     freedv.c \
@@ -140,14 +140,14 @@ ifeq ($(FREEDV_INCLUDE),FREEDV)
 endif
 
 ifeq ($(LOCALCW_INCLUDE),LOCALCW)
-    LOCALCW_OPTIONS=-D LOCALCW
+    LOCALCW_OPTIONS=-DLOCALCW
     LOCALCW_SOURCES= iambic.c
     LOCALCW_HEADERS= iambic.h
     LOCALCW_OBJS= iambic.o
 endif
 
 ifeq ($(GPIO_INCLUDE),GPIO)
-    GPIO_OPTIONS=-D GPIO
+    GPIO_OPTIONS=-DGPIO
     GPIO_LIBS=-lwiringPi
     GPIO_SOURCES= \
     gpio.c \
@@ -161,7 +161,7 @@ ifeq ($(GPIO_INCLUDE),GPIO)
 endif
 
 ifeq ($(I2C_INCLUDE),I2C)
-    I2C_OPTIONS=-D I2C
+    I2C_OPTIONS=-DI2C
     I2C_SOURCES=i2c.c
     I2C_HEADERS=i2c.h
     I2C_OBJS=i2c.o
@@ -174,7 +174,7 @@ endif
 # on your system.
 #
 ifeq ($(STEMLAB_DISCOVERY), STEMLAB_DISCOVERY)
-    STEMLAB_OPTIONS=-D STEMLAB_DISCOVERY \
+    STEMLAB_OPTIONS=-DSTEMLAB_DISCOVERY \
     `pkg-config --cflags avahi-gobject` \
     `pkg-config --cflags libcurl`
     STEMLAB_LIBS=`pkg-config --libs avahi-gobject` `pkg-config --libs libcurl`
@@ -184,7 +184,7 @@ ifeq ($(STEMLAB_DISCOVERY), STEMLAB_DISCOVERY)
 endif
 
 ifeq ($(STEMLAB_DISCOVERY), STEMLAB_DISCOVERY_NOAVAHI)
-    STEMLAB_OPTIONS=-D STEMLAB_DISCOVERY -D NO_AVAHI `pkg-config --cflags libcurl`
+    STEMLAB_OPTIONS=-DSTEMLAB_DISCOVERY -DNO_AVAHI `pkg-config --cflags libcurl`
     STEMLAB_LIBS=`pkg-config --libs libcurl`
     STEMLAB_SOURCES=stemlab_discovery.c
     STEMLAB_HEADERS=stemlab_discovery.h
@@ -192,7 +192,7 @@ ifeq ($(STEMLAB_DISCOVERY), STEMLAB_DISCOVERY_NOAVAHI)
 endif
 
 ifeq ($(PI_SDR_INCLUDE),PI_SDR)
-    PI_SDR_OPTIONS=-D PI_SDR
+    PI_SDR_OPTIONS=-DPI_SDR
 endif
 
 GTKINCLUDES=`pkg-config --cflags gtk+-3.0`
@@ -203,7 +203,7 @@ AUDIO_LIBS=-lasound
 
 OPTIONS=-g -Wno-deprecated-declarations $(PURESIGNAL_OPTIONS) $(REMOTE_OPTIONS) $(USBOZY_OPTIONS) $(I2C_OPTIONS) $(GPIO_OPTIONS) $(LIMESDR_OPTIONS) \
     $(FREEDV_OPTIONS) $(LOCALCW_OPTIONS) $(RADIOBERRY_OPTIONS) $(PI_SDR_OPTIONS) $(PSK_OPTIONS) $(STEMLAB_OPTIONS) $(STEMLAB_FIX_OPTION) \
-    -D GIT_DATE='"$(GIT_DATE)"' -D GIT_VERSION='"$(GIT_VERSION)"' $(DEBUG_OPTION) -O3
+    -DGIT_DATE='"$(GIT_DATE)"' -DGIT_VERSION='"$(GIT_VERSION)"' $(DEBUG_OPTION) -O3
 
 LIBS=-lrt -lm -lwdsp -lpthread $(AUDIO_LIBS) $(USBOZY_LIBS) $(PSKLIBS) $(GTKLIBS) $(GPIO_LIBS) $(SOAPYSDRLIBS) $(FREEDVLIBS) $(STEMLAB_LIBS)
 INCLUDES=$(GTKINCLUDES)
