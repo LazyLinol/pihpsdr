@@ -76,6 +76,7 @@ static GdkCursor *cursor_watch;
 static GtkWidget *splash;
 
 GtkBuilder *builder;
+GtkWidget *splash_window;
 GtkWidget *top_window;
 GtkWidget *grid;
 
@@ -145,7 +146,7 @@ static int init(void *data) {
   cursor_arrow = gdk_cursor_new(GDK_ARROW);
   cursor_watch = gdk_cursor_new(GDK_WATCH);
 
-  gdk_window_set_cursor(gtk_widget_get_window(top_window), cursor_watch);
+  //gdk_window_set_cursor(gtk_widget_get_window(top_window), cursor_watch);
 
   // check if wisdom file exists
   res = getcwd(wisdom_directory, sizeof(wisdom_directory));
@@ -233,9 +234,15 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   //fixed=gtk_fixed_new();
   //gtk_container_add(GTK_CONTAINER(top_window), fixed);
 
+  // Load global css.
+  GtkCssProvider *provider = gtk_css_provider_new();
+  gtk_css_provider_load_from_path(provider, "./styles/global.css", NULL);
+  gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
   // Create startup splash.
   builder = gtk_builder_new_from_file("./resources/pihpsdr.glade");
-  GtkWidget *splash_window = GTK_WIDGET(gtk_builder_get_object(builder, "splash_window"));
+  splash_window = GTK_WIDGET(gtk_builder_get_object(builder, "splash_window"));
+  gtk_window_set_transient_for(GTK_WINDOW(splash_window), GTK_WINDOW(top_window));
 
   /*fprintf(stderr, "create grid\n");
   grid = gtk_grid_new();
@@ -250,12 +257,12 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   fprintf(stderr, "add image to grid\n");
   gtk_grid_attach(GTK_GRID(grid), image, 0, 0, 1, 4);*/
 
-  fprintf(stderr, "create pi label\n");
+  /*fprintf(stderr, "create pi label\n");
   GtkWidget *pi_label = gtk_label_new("piHPSDR by John Melton g0orx/n6lyt");
   gtk_label_set_justify(GTK_LABEL(pi_label), GTK_JUSTIFY_LEFT);
   gtk_widget_show(pi_label);
   fprintf(stderr, "add pi label to grid\n");
-  gtk_grid_attach(GTK_GRID(grid), pi_label, 1, 0, 1, 1);
+  gtk_grid_attach(GTK_GRID(grid), pi_label, 1, 0, 1, 1);*/
 
   fprintf(stderr, "create build label\n");
   char build[64];
@@ -266,7 +273,7 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   fprintf(stderr, "create status\n");
   status = GTK_WIDGET(gtk_builder_get_object(builder, "status_label"));
 
-  //gtk_widget_show_all(top_window);
+  gtk_widget_show_all(top_window);
   gtk_widget_show_all(splash_window);
 
   g_idle_add(init, NULL);

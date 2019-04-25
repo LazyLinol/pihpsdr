@@ -113,7 +113,6 @@
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
-    <property name="type_hint">splashscreen</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
     <property name="deletable">False</property>

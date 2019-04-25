@@ -27,6 +27,7 @@ extern gint display_width;
 extern gint display_height;
 extern gint full_screen;
 extern GtkBuilder *builder;
+extern GtkWidget *splash_window;
 extern GtkWidget *top_window;
 extern GtkWidget *grid;
 extern void status_text(char *text);
