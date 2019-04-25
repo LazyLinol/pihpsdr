@@ -75,6 +75,7 @@ static GdkCursor *cursor_watch;
 
 static GtkWidget *splash;
 
+GtkBuilder *builder;
 GtkWidget *top_window;
 GtkWidget *grid;
 
@@ -177,11 +178,9 @@ static int init(void *data) {
 }
 
 static void activate_pihpsdr(GtkApplication *app, gpointer data) {
-
   //gtk_init (&argc, &argv);
 
   fprintf(stderr, "Build: %s %s\n", build_date, version);
-
   fprintf(stderr, "GTK+ version %d.%d.%d\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
   uname(&unameData);
   fprintf(stderr, "sysname: %s\n", unameData.sysname);
@@ -234,22 +233,24 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   //fixed=gtk_fixed_new();
   //gtk_container_add(GTK_CONTAINER(top_window), fixed);
 
-  fprintf(stderr, "create grid\n");
+  // Create startup splash.
+  builder = gtk_builder_new_from_file("./resources/pihpsdr.glade");
+  GtkWidget *splash_window = GTK_WIDGET(gtk_builder_get_object(builder, "splash_window"));
+
+  /*fprintf(stderr, "create grid\n");
   grid = gtk_grid_new();
   gtk_widget_set_size_request(grid, display_width, display_height);
   gtk_grid_set_row_homogeneous(GTK_GRID(grid), FALSE);
   gtk_grid_set_column_homogeneous(GTK_GRID(grid), FALSE);
   fprintf(stderr, "add grid\n");
-  gtk_container_add(GTK_CONTAINER(top_window), grid);
+  gtk_container_add(GTK_CONTAINER(top_window), grid);*/
 
-  fprintf(stderr, "create image\n");
+  /*fprintf(stderr, "create image\n");
   GtkWidget *image = gtk_image_new_from_file("hpsdr.png");
   fprintf(stderr, "add image to grid\n");
-  gtk_grid_attach(GTK_GRID(grid), image, 0, 0, 1, 4);
+  gtk_grid_attach(GTK_GRID(grid), image, 0, 0, 1, 4);*/
 
   fprintf(stderr, "create pi label\n");
-  char build[64];
-  sprintf(build, "build: %s %s", build_date, version);
   GtkWidget *pi_label = gtk_label_new("piHPSDR by John Melton g0orx/n6lyt");
   gtk_label_set_justify(GTK_LABEL(pi_label), GTK_JUSTIFY_LEFT);
   gtk_widget_show(pi_label);
@@ -257,30 +258,16 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   gtk_grid_attach(GTK_GRID(grid), pi_label, 1, 0, 1, 1);
 
   fprintf(stderr, "create build label\n");
-  GtkWidget *build_date_label = gtk_label_new(build);
-  gtk_label_set_justify(GTK_LABEL(build_date_label), GTK_JUSTIFY_LEFT);
-  gtk_widget_show(build_date_label);
-  fprintf(stderr, "add build label to grid\n");
-  gtk_grid_attach(GTK_GRID(grid), build_date_label, 1, 1, 1, 1);
+  char build[64];
+  sprintf(build, "build: %s %s", build_date, version);
+  GtkWidget *build_date_label = GTK_WIDGET(gtk_builder_get_object(builder, "build_label"));
+  gtk_label_set_label(GTK_LABEL(build_date_label), build);
 
   fprintf(stderr, "create status\n");
-  status = gtk_label_new("");
-  gtk_label_set_justify(GTK_LABEL(status), GTK_JUSTIFY_LEFT);
-  //gtk_widget_override_font(status, pango_font_description_from_string("FreeMono 18"));
-  gtk_widget_show(status);
-  fprintf(stderr, "add status to grid\n");
-  gtk_grid_attach(GTK_GRID(grid), status, 1, 3, 1, 1);
+  status = GTK_WIDGET(gtk_builder_get_object(builder, "status_label"));
 
-  /*
-  fprintf(stderr,"create exit button\n");
-    GtkWidget *button = gtk_button_new_with_label ("Exit");
-    //g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
-    g_signal_connect_swapped (button, "clicked", G_CALLBACK (gtk_widget_destroy), top_window);
-  fprintf(stderr,"add exit button to grid\n");
-    gtk_grid_attach(GTK_GRID(grid), button, 1, 4, 1, 1);
-  */
-
-  gtk_widget_show_all(top_window);
+  //gtk_widget_show_all(top_window);
+  gtk_widget_show_all(splash_window);
 
   g_idle_add(init, NULL);
   //g_idle_add(discovery,NULL);

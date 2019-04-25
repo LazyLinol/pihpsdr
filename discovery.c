@@ -147,40 +147,22 @@ void discovery() {
   status_text("Discovery");
 
   if (devices == 0) {
-    gdk_window_set_cursor(gtk_widget_get_window(top_window), gdk_cursor_new(GDK_ARROW));
+    //gdk_window_set_cursor(gtk_widget_get_window(top_window), gdk_cursor_new(GDK_ARROW));
     discovery_dialog = gtk_dialog_new();
     gtk_window_set_transient_for(GTK_WINDOW(discovery_dialog), GTK_WINDOW(top_window));
     gtk_window_set_title(GTK_WINDOW(discovery_dialog), "piHPSDR - Discovery");
-    //gtk_window_set_decorated(GTK_WINDOW(discovery_dialog),FALSE);
-
-    //gtk_widget_override_font(discovery_dialog, pango_font_description_from_string("FreeMono 16"));
-
-    GdkRGBA color;
-    color.red = 1.0;
-    color.green = 1.0;
-    color.blue = 1.0;
-    color.alpha = 1.0;
-    gtk_widget_override_background_color(discovery_dialog, GTK_STATE_FLAG_NORMAL, &color);
+    gtk_window_set_decorated(GTK_WINDOW(discovery_dialog), TRUE);
 
     GtkWidget *content;
-
     content = gtk_dialog_get_content_area(GTK_DIALOG(discovery_dialog));
 
-    GtkWidget *grid = gtk_grid_new();
-    gtk_grid_set_row_homogeneous(GTK_GRID(grid), TRUE);
-    gtk_grid_set_column_homogeneous(GTK_GRID(grid), TRUE);
-    gtk_grid_set_row_spacing(GTK_GRID(grid), 10);
+    GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "no_devices_found_grid"));
 
-    GtkWidget *label = gtk_label_new("No devices found!");
-    gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 2, 1);
-
-    GtkWidget *exit_b = gtk_button_new_with_label("Exit");
+    GtkWidget *exit_b = GTK_WIDGET(gtk_builder_get_object(builder, "exit_button"));
     g_signal_connect(exit_b, "button-press-event", G_CALLBACK(exit_cb), NULL);
-    gtk_grid_attach(GTK_GRID(grid), exit_b, 0, 1, 1, 1);
 
-    GtkWidget *discover_b = gtk_button_new_with_label("Retry Discovery");
+    GtkWidget *discover_b = GTK_WIDGET(gtk_builder_get_object(builder, "retry_button"));
     g_signal_connect(discover_b, "button-press-event", G_CALLBACK(discover_cb), NULL);
-    gtk_grid_attach(GTK_GRID(grid), discover_b, 1, 1, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(content), grid);
     gtk_widget_show_all(discovery_dialog);

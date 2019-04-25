@@ -356,6 +356,7 @@ void start_radio() {
   int x;
   int y;
   //fprintf(stderr,"start_radio: selected radio=%p device=%d\n",radio,radio->device);
+  gtk_widget_show_all(top_window);
   gdk_window_set_cursor(gtk_widget_get_window(top_window), gdk_cursor_new(GDK_WATCH));
 
   int rc;
