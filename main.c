@@ -220,11 +220,12 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   gtk_window_set_position(GTK_WINDOW(top_window), GTK_WIN_POS_CENTER_ALWAYS);
   gtk_window_set_resizable(GTK_WINDOW(top_window), FALSE);
   fprintf(stderr, "setting top window icon\n");
-  GError *error;
-  if (!gtk_window_set_icon_from_file(GTK_WINDOW(top_window), "hpsdr.png", &error)) {
+  GError *error = NULL;
+  if (!gtk_window_set_icon_from_file(GTK_WINDOW(top_window), "./resources/hpsdr.png", &error)) {
     fprintf(stderr, "Warning: failed to set icon for top_window\n");
     if (error != NULL) {
       fprintf(stderr, "%s\n", error->message);
+      g_clear_error(&error);
     }
   }
   g_signal_connect(top_window, "delete-event", G_CALLBACK(main_delete), NULL);
@@ -240,8 +241,13 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   // Create startup splash.
-  builder = gtk_builder_new_from_file("./resources/pihpsdr.glade");
-  splash_window = GTK_WIDGET(gtk_builder_get_object(builder, "splash_window"));
+  builder = gtk_builder_new();
+  gchar *objects[] = {"splash_window", NULL};
+  if (!gtk_builder_add_objects_from_file(builder, "./resources/pihpsdr.glade", objects, &error)) {
+    fprintf(stderr, "%s\n", error->message);
+    g_clear_error(&error);
+  }
+  GtkWidget *splash_window = GTK_WIDGET(gtk_builder_get_object(builder, "splash_window"));
   gtk_window_set_transient_for(GTK_WINDOW(splash_window), GTK_WINDOW(top_window));
 
   /*fprintf(stderr, "create grid\n");
@@ -264,7 +270,7 @@ static void activate_pihpsdr(GtkApplication *app, gpointer data) {
   fprintf(stderr, "add pi label to grid\n");
   gtk_grid_attach(GTK_GRID(grid), pi_label, 1, 0, 1, 1);*/
 
-  fprintf(stderr, "create build label\n");
+  //fprintf(stderr, "create build label\n");
   char build[64];
   sprintf(build, "build: %s %s", build_date, version);
   GtkWidget *build_date_label = GTK_WIDGET(gtk_builder_get_object(builder, "build_label"));

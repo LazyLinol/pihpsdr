@@ -149,19 +149,28 @@ void discovery() {
 
   if (devices == 0) {
     //gdk_window_set_cursor(gtk_widget_get_window(top_window), gdk_cursor_new(GDK_ARROW));
-    if (discovery_dialog == NULL) {
-      discovery_dialog = gtk_dialog_new();
-      gtk_window_set_transient_for(GTK_WINDOW(discovery_dialog), GTK_WINDOW(splash_window));
-      gtk_window_set_title(GTK_WINDOW(discovery_dialog), "piHPSDR - Discovery");
-      gtk_window_set_decorated(GTK_WINDOW(discovery_dialog), TRUE);
-      gtk_window_set_resizable(GTK_WINDOW(discovery_dialog), FALSE);
-    }
+    discovery_dialog = gtk_dialog_new();
+    gtk_window_set_transient_for(GTK_WINDOW(discovery_dialog), GTK_WINDOW(splash_window));
+    gtk_window_set_title(GTK_WINDOW(discovery_dialog), "piHPSDR - Discovery");
+    gtk_window_set_decorated(GTK_WINDOW(discovery_dialog), TRUE);
+    gtk_window_set_resizable(GTK_WINDOW(discovery_dialog), FALSE);
 
     GtkWidget *content;
     content = gtk_dialog_get_content_area(GTK_DIALOG(discovery_dialog));
 
+    GError *error = NULL;
+    gchar *objects[] = {"no_devices_found_grid", NULL};
+    if (!gtk_builder_add_objects_from_file(builder, "./resources/pihpsdr.glade", objects, &error)) {
+      fprintf(stderr, "%s\n", error->message);
+      g_clear_error(&error);
+    }
     GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "no_devices_found_grid"));
-    //gtk_container_remove(GTK_CONTAINER(content), grid);
+    GdkRGBA color;
+    color.red = 1.0;
+    color.green = 1.0;
+    color.blue = 1.0;
+    color.alpha = 1.0;
+    gtk_widget_override_background_color(grid, GTK_STATE_FLAG_NORMAL, &color);
 
     GtkWidget *exit_b = GTK_WIDGET(gtk_builder_get_object(builder, "exit_button"));
     g_signal_connect(exit_b, "button-press-event", G_CALLBACK(exit_cb), NULL);
