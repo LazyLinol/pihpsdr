@@ -498,7 +498,7 @@ void meter_update(RECEIVER *rx, int meter_type, double value, double reverse, do
 
     cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
     switch (meter_type) {
-      case SMETER:
+      case SMETER: {
         // value is dBm
         text_location = 10;
         offset = 5.0;
@@ -593,6 +593,7 @@ void meter_update(RECEIVER *rx, int meter_type, double value, double reverse, do
           cairo_show_text(cr, sf);
         }
 #endif
+      }
         break;
 #ifdef PSK
       case PSKMETER: {
@@ -624,7 +625,7 @@ void meter_update(RECEIVER *rx, int meter_type, double value, double reverse, do
         cairo_show_text(cr, sf);
       } break;
 #endif
-      case POWER:
+      case POWER: {
         // value is Watts
         cairo_select_font_face(cr, "FreeMono", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
         cairo_set_font_size(cr, 12);
@@ -655,6 +656,7 @@ void meter_update(RECEIVER *rx, int meter_type, double value, double reverse, do
               cairo_move_to(cr, 10, 45);
               cairo_show_text(cr, sf);
         */
+      }
         break;
     }
   }

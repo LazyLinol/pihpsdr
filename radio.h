@@ -140,13 +140,13 @@ extern int mic_ptt_tip_bias_ring;
 //extern int tune_drive_level;
 //extern int drive_level;
 
-int receivers;
+extern int receivers;
 
 int adc[2];
-int adc_attenuation[2];
+extern int adc_attenuation[2];
 int rx_gain_slider[2];
 
-int locked;
+extern int locked;
 
 extern long long step;
 //extern int rit;
@@ -284,7 +284,7 @@ extern long long getFrequency();
 extern void radioRestoreState();
 extern void radioSaveState();
 
-extern void calculate_display_average();
+extern void calculate_display_average(RECEIVER *rx);
 
 extern void set_filter_type(int filter_type);
 extern void set_filter_size(int filter_size);

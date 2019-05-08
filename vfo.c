@@ -297,6 +297,7 @@ void vfo_band_changed(int b) {
 
   switch (id) {
     case 0:
+    {
       bandstack->current_entry = vfo[id].bandstack;
       receiver_vfo_changed(receiver[id]);
       BAND *band = band_get_band(vfo[id].band);
@@ -304,11 +305,14 @@ void vfo_band_changed(int b) {
       set_alex_tx_antenna(band->alexTxAntenna);
       set_alex_attenuation(band->alexAttenuation);
       receiver_vfo_changed(receiver[0]);
+    }
       break;
     case 1:
+    {
       if (receivers == 2) {
         receiver_vfo_changed(receiver[1]);
       }
+    }
       break;
   }
 
@@ -336,6 +340,7 @@ void vfo_bandstack_changed(int b) {
 
   switch (id) {
     case 0:
+    {
       bandstack->current_entry = vfo[id].bandstack;
       receiver_vfo_changed(receiver[id]);
       BAND *band = band_get_band(vfo[id].band);
@@ -343,11 +348,14 @@ void vfo_bandstack_changed(int b) {
       set_alex_tx_antenna(band->alexTxAntenna);
       set_alex_attenuation(band->alexAttenuation);
       receiver_vfo_changed(receiver[0]);
+    }
       break;
     case 1:
+    {
       if (receivers == 2) {
         receiver_vfo_changed(receiver[1]);
       }
+    }
       break;
   }
 

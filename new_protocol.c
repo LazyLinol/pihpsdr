@@ -1160,7 +1160,7 @@ static gpointer new_protocol_thread(gpointer data) {
 
   while (running) {
 
-    buffer = malloc(NET_BUFFER_SIZE);
+    buffer = (unsigned char*)malloc(NET_BUFFER_SIZE);
     bytesread = recvfrom(data_socket, buffer, NET_BUFFER_SIZE, 0, (struct sockaddr *)&addr, &length);
     if (bytesread < 0) {
       fprintf(stderr, "recvfrom socket failed for new_protocol_thread");

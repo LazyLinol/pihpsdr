@@ -81,7 +81,7 @@ int n_output_devices = 0;
 int audio_open_output(RECEIVER *rx) {
   int err;
   snd_pcm_hw_params_t *hw_params;
-  int rate = 48000;
+  unsigned int rate = 48000;
   int dir = 0;
 
   fprintf(stderr, "audio_open_output: rx=%d audio_device=%d\n", rx->id, rx->audio_device);
@@ -164,7 +164,7 @@ int audio_open_output(RECEIVER *rx) {
 int audio_open_input() {
   int err;
   snd_pcm_hw_params_t *hw_params;
-  int rate = 48000;
+  unsigned int rate = 48000;
   int dir = 0;
 
   fprintf(stderr, "audio_open_input: %d\n", transmitter->input_device);
@@ -467,7 +467,7 @@ void audio_get_cards() {
       // input devices
       snd_pcm_info_set_stream(pcminfo, SND_PCM_STREAM_CAPTURE);
       if ((err = snd_ctl_pcm_info(handle, pcminfo)) == 0) {
-        device_id = malloc(64);
+        device_id = (char *)malloc(64);
         snprintf(device_id, 64, "plughw:%d,%d %s", card, dev, snd_ctl_card_info_get_name(info));
         input_devices[n_input_devices++] = device_id;
         fprintf(stderr, "input_device: %s\n", device_id);
@@ -476,7 +476,7 @@ void audio_get_cards() {
       // ouput devices
       snd_pcm_info_set_stream(pcminfo, SND_PCM_STREAM_PLAYBACK);
       if ((err = snd_ctl_pcm_info(handle, pcminfo)) == 0) {
-        device_id = malloc(64);
+        device_id = (char *)malloc(64);
         snprintf(device_id, 64, "plughw:%d,%d %s", card, dev, snd_ctl_card_info_get_name(info));
         output_devices[n_output_devices++] = device_id;
         fprintf(stderr, "output_device: %s\n", device_id);
@@ -500,7 +500,7 @@ void audio_get_cards() {
 
     if (strncmp("dmix:", name, 5) == 0 /* || strncmp("pulse", name, 5)==0*/) {
       fprintf(stderr, "name=%s descr=%s io=%s\n", name, descr, io);
-      device_id = malloc(64);
+      device_id = (char *)malloc(64);
 
       snprintf(device_id, 64, "%s", name);
       output_devices[n_output_devices++] = device_id;

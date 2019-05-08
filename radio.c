@@ -347,7 +347,7 @@ static gboolean minimize_cb(GtkWidget *widget, GdkEventButton *event, gpointer d
 }
 
 static gboolean menu_cb(GtkWidget *widget, GdkEventButton *event, gpointer data) {
-  new_menu(top_window);
+  new_menu();
   return TRUE;
 }
 
@@ -1524,7 +1524,7 @@ void start_radio() {
 #endif
   }
 
-  void calculate_display_average(RECEIVER * rx) {
+  void calculate_display_average(RECEIVER *rx) {
     double display_avb;
     int display_average;
 

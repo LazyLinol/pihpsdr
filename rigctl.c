@@ -72,7 +72,7 @@ static const int TelnetPortC = 19092;
 // max number of bytes we can get at once
 #define MAXDATASIZE 2000
 
-void parse_cmd();
+void parse_cmd(char *cmd_input, int len, int client_sock);
 int connect_cnt = 0;
 
 int rigctlGetFilterLow();
@@ -1066,8 +1066,9 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
     if (zzid_flag == 1) { // Set or Read the Step Size (replaces ZZST)
       if (len <= 2) {
         switch (step) {
-          case 1:
+          case 1: {
             work_int = 0;
+          }
             break;
           case 10:
             work_int = 1;
@@ -1333,7 +1334,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
         send_resp(client_sock, msg);
       } else {
         double new_gain = (double)atoi(&cmd_input[2]);
-        double *p_gain = malloc(sizeof(double));
+        double *p_gain = (double *)malloc(sizeof(double));
         *p_gain = new_gain;
         g_idle_add(ext_update_agc_gain, (gpointer)p_gain);
       }
@@ -2020,7 +2021,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
     // Next data will be rest of freq
     if (len == 13) { //We are receiving freq info
       new_freqA = atoll(&cmd_input[2]);
-      long long *p = malloc(sizeof(long long));
+      long long *p = (long long *)malloc(sizeof(long long));
       *p = new_freqA;
       g_idle_add(ext_set_frequency, (gpointer)p);
       g_idle_add(ext_vfo_update, NULL);
@@ -2054,7 +2055,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
     // PiHPSDR - ZZFB - VFO B frequency
     if (len == 13) { //We are receiving freq info
       new_freqB = atoll(&cmd_input[2]);
-      long long *p = malloc(sizeof(long long));
+      long long *p = (long long *)malloc(sizeof(long long));
       *p = new_freqB;
       g_idle_add(ext_set_frequency, (gpointer)p);
       g_idle_add(ext_vfo_update, NULL);
@@ -2629,21 +2630,21 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
       }
 #if 0
                                             // Other stuff to switch modes goes here..
-                                            // since new_mode has the interpreted command in 
+                                            // since new_mode has the interpreted command in
                                             // in it now.
-                                            entry= (BANDSTACK_ENTRY *) 
+                                            entry= (BANDSTACK_ENTRY *)
                                                   bandstack_entry_get_current();
                                             entry->mode=new_mode;
                                             // BUG - kills the system when there is some
                                             // GPIO activity and Mode sets occur. Used twittling the
  					    // frequency along with setting mode between USB/LSB with
 					    // flrig. Tried doing the g_idle_add trick - but don't know the
-					    // the magic to get that to compile without warnings 
+					    // the magic to get that to compile without warnings
                                             //setMode(entry->mode);
                                             set_mode(active_receiver,entry->mode);
                                             // Moved the ext_vfo_update down after filter updated. (John G0ORX)
                                             //g_idle_add(ext_vfo_update,NULL);
-                                            
+
                                             FILTER* band_filters=filters[entry->mode];
                                             FILTER* band_filter=&band_filters[entry->filter];
                                             //setFilter(band_filter->low,band_filter->high);
@@ -2739,7 +2740,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
         int tval = atoi(&cmd_input[2]);
         new_vol = (double)(tval * 60 / 100) - 10;
         //set_mic_gain(new_vol);
-        double *p_mic_gain = malloc(sizeof(double));
+        double *p_mic_gain = (double *)malloc(sizeof(double));
         *p_mic_gain = new_vol;
         g_idle_add(update_mic_gain, (void *)p_mic_gain);
       }
@@ -2750,7 +2751,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
       } else {
         int new_vol = atoi(&cmd_input[2]);
         if ((new_vol >= -10) && (new_vol <= 50)) {
-          double *p_mic_gain = malloc(sizeof(double));
+          double *p_mic_gain = (double *)malloc(sizeof(double));
           *p_mic_gain = new_vol;
           g_idle_add(update_mic_gain, (void *)p_mic_gain);
         } else {
@@ -3194,7 +3195,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
 
         double drive_val = (double)(atoi(&cmd_input[2]));
         // setDrive(drive_val);
-        double *p_drive = malloc(sizeof(double));
+        double *p_drive = (double *)malloc(sizeof(double));
         *p_drive = drive_val;
         g_idle_add(update_drive, (gpointer)p_drive);
         //set_drive(drive_val);
@@ -3374,7 +3375,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
             int base_value = atoi(&cmd_input[2]);
             double new_gain = roundf(((((double)base_value + 1) / 256.0) * 141.0)) - 21.0;
             //set_agc_gain(new_gain);
-            double *p_gain = malloc(sizeof(double));
+            double *p_gain = (double *)malloc(sizeof(double));
             *p_gain = new_gain;
             g_idle_add(ext_update_agc_gain, (gpointer)p_gain);
           } else { // Read Audio Gain
@@ -3398,7 +3399,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
               work_int = -work_int;
             }
             if ((work_int >= -20) && (work_int <= 120)) {
-              double *p_gain = malloc(sizeof(double));
+              double *p_gain = (double *)malloc(sizeof(double));
               *p_gain = (double)work_int;
               g_idle_add(ext_update_agc_gain, (gpointer)p_gain);
             } else {
@@ -4484,6 +4485,7 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
 
       switch (id) {
         case 0:
+        {
           bandstack->current_entry = vfo[id].bandstack;
           receiver_vfo_changed(receiver[id]);
           BAND *band = band_get_band(vfo[id].band);
@@ -4491,11 +4493,14 @@ void parse_cmd(char *cmd_input, int len, int client_sock) {
           set_alex_tx_antenna(band->alexTxAntenna);
           set_alex_attenuation(band->alexAttenuation);
           receiver_vfo_changed(receiver[0]);
+        }
           break;
         case 1:
+        {
           if (receivers == 2) {
             receiver_vfo_changed(receiver[1]);
           }
+        }
           break;
       }
 

@@ -128,7 +128,7 @@ static void local_output_changed_cb(GtkWidget *widget, gpointer data) {
 
 static void audio_channel_cb(GtkWidget *widget, gpointer data) {
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-    active_receiver->audio_channel = (uintptr_t)data;
+    //active_receiver->audio_channel = (audio_t)data;
   }
 }
 

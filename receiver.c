@@ -451,7 +451,7 @@ void receiver_restore_state(RECEIVER *rx) {
   sprintf(name, "receiver.%d.audio_channel", rx->id);
   value = getProperty(name);
   if (value)
-    rx->audio_channel = atoi(value);
+    rx->audio_channel = (audio_t)atoi(value);
   sprintf(name, "receiver.%d.local_audio", rx->id);
   value = getProperty(name);
   if (value)
@@ -854,7 +854,7 @@ RECEIVER *create_pure_signal_receiver(int id, int buffer_size, int sample_rate, 
 
 RECEIVER *create_receiver(int id, int buffer_size, int fft_size, int pixels, int fps, int width, int height) {
   fprintf(stderr, "create_receiver: id=%d buffer_size=%d fft_size=%d pixels=%d fps=%d\n", id, buffer_size, fft_size, pixels, fps);
-  RECEIVER *rx = malloc(sizeof(RECEIVER));
+  RECEIVER *rx = (RECEIVER *)malloc(sizeof(RECEIVER));
   rx->id = id;
   switch (id) {
     case 0:
@@ -919,10 +919,10 @@ RECEIVER *create_receiver(int id, int buffer_size, int fft_size, int pixels, int
 
   // allocate buffers
   rx->iq_sequence = 0;
-  rx->iq_input_buffer = malloc(sizeof(double) * 2 * rx->buffer_size);
-  rx->audio_buffer = malloc(AUDIO_BUFFER_SIZE);
+  rx->iq_input_buffer = (double *)malloc(sizeof(double) * 2 * rx->buffer_size);
+  rx->audio_buffer = (unsigned char *)malloc(AUDIO_BUFFER_SIZE);
   rx->audio_sequence = 0L;
-  rx->pixel_samples = malloc(sizeof(float) * pixels);
+  rx->pixel_samples = (float *)malloc(sizeof(float) * pixels);
 
   rx->samples = 0;
   rx->displaying = 0;
@@ -992,7 +992,7 @@ RECEIVER *create_receiver(int id, int buffer_size, int fft_size, int pixels, int
 
   int scale = rx->sample_rate / 48000;
   rx->output_samples = rx->buffer_size / scale;
-  rx->audio_output_buffer = malloc(sizeof(double) * 2 * rx->output_samples);
+  rx->audio_output_buffer = (double *)malloc(sizeof(double) * 2 * rx->output_samples);
 
   fprintf(stderr, "create_receiver: id=%d output_samples=%d\n", rx->id, rx->output_samples);
 
@@ -1107,8 +1107,8 @@ void receiver_change_sample_rate(RECEIVER *rx, int sample_rate) {
   int scale = rx->sample_rate / 48000;
   rx->output_samples = rx->buffer_size / scale;
   free(rx->audio_output_buffer);
-  rx->audio_output_buffer = malloc(sizeof(double) * 2 * rx->output_samples);
-  rx->audio_buffer = malloc(AUDIO_BUFFER_SIZE);
+  rx->audio_output_buffer = (double *)malloc(sizeof(double) * 2 * rx->output_samples);
+  rx->audio_buffer = (unsigned char *)malloc(AUDIO_BUFFER_SIZE);
   rx->hz_per_pixel = (double)rx->sample_rate / (double)rx->width;
   SetInputSamplerate(rx->id, sample_rate);
   init_analyzer(rx);

@@ -55,7 +55,7 @@ int filterHigh;
 int txFilterLowCut;
 int txFilterHighCut;
 
-FILTER *filters[MODES];
+extern FILTER *filters[MODES];
 
 void filterSaveState();
 void filterRestoreState();

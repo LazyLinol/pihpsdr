@@ -512,7 +512,7 @@ static void create_visual(TRANSMITTER *tx) {
 TRANSMITTER *create_transmitter(int id, int buffer_size, int fft_size, int fps, int width, int height) {
   int rc;
 
-  TRANSMITTER *tx = malloc(sizeof(TRANSMITTER));
+  TRANSMITTER *tx = (TRANSMITTER *)malloc(sizeof(TRANSMITTER));
   tx->id = id;
   tx->buffer_size = buffer_size;
   tx->fft_size = fft_size;
@@ -586,13 +586,13 @@ TRANSMITTER *create_transmitter(int id, int buffer_size, int fft_size, int fps, 
 
   // allocate buffers
   fprintf(stderr, "transmitter: allocate buffers: mic_input_buffer=%d iq_output_buffer=%d pixels=%d\n", tx->buffer_size, tx->output_samples, tx->pixels);
-  tx->mic_input_buffer = malloc(sizeof(double) * 2 * tx->buffer_size);
-  tx->iq_output_buffer = malloc(sizeof(double) * 2 * tx->output_samples);
+  tx->mic_input_buffer = (double *)malloc(sizeof(double) * 2 * tx->buffer_size);
+  tx->iq_output_buffer = (double *)malloc(sizeof(double) * 2 * tx->output_samples);
   tx->samples = 0;
-  tx->pixel_samples = malloc(sizeof(float) * tx->pixels);
+  tx->pixel_samples = (float *)malloc(sizeof(float) * tx->pixels);
   if (cw_shape_buffer)
     free(cw_shape_buffer);
-  cw_shape_buffer = malloc(sizeof(double) * tx->buffer_size);
+  cw_shape_buffer = (double *)malloc(sizeof(double) * tx->buffer_size);
   fprintf(stderr, "transmitter: allocate buffers: mic_input_buffer=%p iq_output_buffer=%p pixels=%p\n", tx->mic_input_buffer, tx->iq_output_buffer, tx->pixel_samples);
 
   fprintf(stderr, "create_transmitter: OpenChannel id=%d buffer_size=%d fft_size=%d sample_rate=%d dspRate=%d outputRate=%d\n", tx->id, tx->buffer_size,
