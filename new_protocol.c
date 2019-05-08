@@ -39,7 +39,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "alex.h"
 #include "audio.h"

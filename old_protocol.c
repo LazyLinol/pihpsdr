@@ -34,7 +34,13 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "audio.h"
 #include "band.h"

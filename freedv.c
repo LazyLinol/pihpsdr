@@ -2,7 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "audio_waterfall.h"
 #include "channel.h"

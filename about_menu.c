@@ -25,7 +25,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "about_menu.h"
 #include "discovered.h"

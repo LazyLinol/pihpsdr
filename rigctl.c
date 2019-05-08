@@ -50,7 +50,13 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 // IP stuff below
 #include <arpa/inet.h> //inet_addr

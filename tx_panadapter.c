@@ -34,7 +34,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 #ifdef FREEDV
 #include "freedv.h"
 #endif

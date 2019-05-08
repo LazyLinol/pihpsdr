@@ -27,7 +27,13 @@
 #include "diversity_menu.h"
 #include "new_menu.h"
 #include "radio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 static GtkWidget *parent_window = NULL;
 

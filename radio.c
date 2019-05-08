@@ -27,7 +27,13 @@
 #include <string.h>
 #include <sys/time.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "audio.h"
 #include "discovered.h"

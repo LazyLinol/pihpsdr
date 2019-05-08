@@ -24,7 +24,13 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #include "ext.h"
 #include "freedv.h"
