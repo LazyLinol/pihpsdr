@@ -46,7 +46,13 @@
 #include "toolbar.h"
 #include "transmitter.h"
 #include "vfo.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 #define MAX_FUNCTION 3
 int function = 0;

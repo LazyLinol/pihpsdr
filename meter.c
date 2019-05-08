@@ -30,7 +30,13 @@
 #include "receiver.h"
 #include "version.h"
 #include "vox.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 #ifdef FREEDV
 #include "freedv.h"
 #include "vfo.h"

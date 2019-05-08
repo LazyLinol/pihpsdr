@@ -41,7 +41,13 @@
 #include "sliders.h"
 #include "transmitter.h"
 #include "vfo.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 static int width;
 static int height;

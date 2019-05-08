@@ -21,7 +21,13 @@
 #include "property.h"
 #include "radio.h"
 #include "toolbar.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 int ENABLE_VFO_ENCODER = 1;
 int ENABLE_VFO_PULLUP = 1;

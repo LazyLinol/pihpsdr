@@ -30,7 +30,13 @@
 #include "new_menu.h"
 #include "radio.h"
 #include "receiver.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 
 static GtkWidget *parent_window = NULL;
 

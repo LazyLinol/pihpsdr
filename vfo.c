@@ -50,7 +50,13 @@
 #include "rigctl.h"
 #include "toolbar.h"
 #include "vfo.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 #ifdef FREEDV
 #include "freedv.h"
 #endif

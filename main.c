@@ -47,7 +47,13 @@
 #include "new_menu.h"
 #include "radio.h"
 #include "version.h"
-#include "wdsp.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <wdsp.h>
+#ifdef __cplusplus
+}
+#endif
 #ifdef I2C
 #include "i2c.h"
 #endif

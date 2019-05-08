@@ -142,9 +142,9 @@ extern int mic_ptt_tip_bias_ring;
 
 extern int receivers;
 
-int adc[2];
+extern int adc[2];
 extern int adc_attenuation[2];
-int rx_gain_slider[2];
+extern int rx_gain_slider[2];
 
 extern int locked;
 
